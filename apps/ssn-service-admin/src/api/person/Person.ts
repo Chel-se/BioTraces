@@ -1,0 +1,37 @@
+import { BankDetail } from "../bankDetail/BankDetail";
+import { BirthDetails } from "../birthDetails/BirthDetails";
+import { Child } from "../child/Child";
+import { EducationRecord } from "../educationRecord/EducationRecord";
+import { JsonValue } from "type-fest";
+import { FamilyMember } from "../familyMember/FamilyMember";
+import { HealthRecord } from "../healthRecord/HealthRecord";
+import { MarriageCertificate } from "../marriageCertificate/MarriageCertificate";
+import { Otp } from "../otp/Otp";
+import { PassportDetail } from "../passportDetail/PassportDetail";
+import { Spouse } from "../spouse/Spouse";
+import { TravelDetail } from "../travelDetail/TravelDetail";
+
+export type Person = {
+  bankDetails?: Array<BankDetail>;
+  birthDetailsItems?: Array<BirthDetails>;
+  birthdate: Date | null;
+  children?: Array<Child>;
+  createdAt: Date;
+  dateOfBirth: Date | null;
+  educationRecords?: Array<EducationRecord>;
+  faceScan: JsonValue;
+  familyMembers?: Array<FamilyMember>;
+  familyTree: JsonValue;
+  fingerPrintScan: JsonValue;
+  firstName: string | null;
+  healthRecords?: Array<HealthRecord>;
+  id: string;
+  lastName: string | null;
+  marriageCertificates?: Array<MarriageCertificate>;
+  otps?: Array<Otp>;
+  passportDetails?: Array<PassportDetail>;
+  spouses?: Array<Spouse>;
+  ssnNumber: string | null;
+  travelDetails?: Array<TravelDetail>;
+  updatedAt: Date;
+};

@@ -1,0 +1,38 @@
+import { BankDetailListRelationFilter } from "../bankDetail/BankDetailListRelationFilter";
+import { BirthDetailsListRelationFilter } from "../birthDetails/BirthDetailsListRelationFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { ChildListRelationFilter } from "../child/ChildListRelationFilter";
+import { EducationRecordListRelationFilter } from "../educationRecord/EducationRecordListRelationFilter";
+import { JsonFilter } from "../../util/JsonFilter";
+import { FamilyMemberListRelationFilter } from "../familyMember/FamilyMemberListRelationFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { HealthRecordListRelationFilter } from "../healthRecord/HealthRecordListRelationFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { MarriageCertificateListRelationFilter } from "../marriageCertificate/MarriageCertificateListRelationFilter";
+import { OtpListRelationFilter } from "../otp/OtpListRelationFilter";
+import { PassportDetailListRelationFilter } from "../passportDetail/PassportDetailListRelationFilter";
+import { SpouseListRelationFilter } from "../spouse/SpouseListRelationFilter";
+import { TravelDetailListRelationFilter } from "../travelDetail/TravelDetailListRelationFilter";
+
+export type PersonWhereInput = {
+  bankDetails?: BankDetailListRelationFilter;
+  birthDetailsItems?: BirthDetailsListRelationFilter;
+  birthdate?: DateTimeNullableFilter;
+  children?: ChildListRelationFilter;
+  dateOfBirth?: DateTimeNullableFilter;
+  educationRecords?: EducationRecordListRelationFilter;
+  faceScan?: JsonFilter;
+  familyMembers?: FamilyMemberListRelationFilter;
+  familyTree?: JsonFilter;
+  fingerPrintScan?: JsonFilter;
+  firstName?: StringNullableFilter;
+  healthRecords?: HealthRecordListRelationFilter;
+  id?: StringFilter;
+  lastName?: StringNullableFilter;
+  marriageCertificates?: MarriageCertificateListRelationFilter;
+  otps?: OtpListRelationFilter;
+  passportDetails?: PassportDetailListRelationFilter;
+  spouses?: SpouseListRelationFilter;
+  ssnNumber?: StringNullableFilter;
+  travelDetails?: TravelDetailListRelationFilter;
+};

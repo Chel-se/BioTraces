@@ -1,0 +1,34 @@
+import { BankDetailCreateNestedManyWithoutPeopleInput } from "./BankDetailCreateNestedManyWithoutPeopleInput";
+import { BirthDetailsCreateNestedManyWithoutPeopleInput } from "./BirthDetailsCreateNestedManyWithoutPeopleInput";
+import { ChildCreateNestedManyWithoutPeopleInput } from "./ChildCreateNestedManyWithoutPeopleInput";
+import { EducationRecordCreateNestedManyWithoutPeopleInput } from "./EducationRecordCreateNestedManyWithoutPeopleInput";
+import { InputJsonValue } from "../../types";
+import { FamilyMemberCreateNestedManyWithoutPeopleInput } from "./FamilyMemberCreateNestedManyWithoutPeopleInput";
+import { HealthRecordCreateNestedManyWithoutPeopleInput } from "./HealthRecordCreateNestedManyWithoutPeopleInput";
+import { MarriageCertificateCreateNestedManyWithoutPeopleInput } from "./MarriageCertificateCreateNestedManyWithoutPeopleInput";
+import { OtpCreateNestedManyWithoutPeopleInput } from "./OtpCreateNestedManyWithoutPeopleInput";
+import { PassportDetailCreateNestedManyWithoutPeopleInput } from "./PassportDetailCreateNestedManyWithoutPeopleInput";
+import { SpouseCreateNestedManyWithoutPeopleInput } from "./SpouseCreateNestedManyWithoutPeopleInput";
+import { TravelDetailCreateNestedManyWithoutPeopleInput } from "./TravelDetailCreateNestedManyWithoutPeopleInput";
+
+export type PersonCreateInput = {
+  bankDetails?: BankDetailCreateNestedManyWithoutPeopleInput;
+  birthDetailsItems?: BirthDetailsCreateNestedManyWithoutPeopleInput;
+  birthdate?: Date | null;
+  children?: ChildCreateNestedManyWithoutPeopleInput;
+  dateOfBirth?: Date | null;
+  educationRecords?: EducationRecordCreateNestedManyWithoutPeopleInput;
+  faceScan?: InputJsonValue;
+  familyMembers?: FamilyMemberCreateNestedManyWithoutPeopleInput;
+  familyTree?: InputJsonValue;
+  fingerPrintScan?: InputJsonValue;
+  firstName?: string | null;
+  healthRecords?: HealthRecordCreateNestedManyWithoutPeopleInput;
+  lastName?: string | null;
+  marriageCertificates?: MarriageCertificateCreateNestedManyWithoutPeopleInput;
+  otps?: OtpCreateNestedManyWithoutPeopleInput;
+  passportDetails?: PassportDetailCreateNestedManyWithoutPeopleInput;
+  spouses?: SpouseCreateNestedManyWithoutPeopleInput;
+  ssnNumber?: string | null;
+  travelDetails?: TravelDetailCreateNestedManyWithoutPeopleInput;
+};

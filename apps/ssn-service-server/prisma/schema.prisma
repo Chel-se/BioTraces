@@ -1,0 +1,202 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Person {
+  bankDetails          BankDetail[]
+  birthDetailsItems    BirthDetails[]
+  birthdate            DateTime?
+  children             Child[]
+  createdAt            DateTime              @default(now())
+  dateOfBirth          DateTime?
+  educationRecords     EducationRecord[]
+  faceScan             Json?
+  familyMembers        FamilyMember[]
+  familyTree           Json?
+  fingerPrintScan      Json?
+  firstName            String?
+  healthRecords        HealthRecord[]
+  id                   String                @id @default(cuid())
+  lastName             String?
+  marriageCertificates MarriageCertificate[]
+  otps                 Otp[]
+  passportDetails      PassportDetail[]
+  spouses              Spouse[]
+  ssnNumber            String?
+  travelDetails        TravelDetail[]
+  updatedAt            DateTime              @updatedAt
+}
+
+model HealthRecord {
+  birthDetailsItems BirthDetails[]
+  createdAt         DateTime       @default(now())
+  id                String         @id @default(cuid())
+  person            Person?        @relation(fields: [personId], references: [id])
+  personId          String?
+  updatedAt         DateTime       @updatedAt
+}
+
+model BirthDetails {
+  createdAt        DateTime          @default(now())
+  educationRecords EducationRecord[]
+  healthRecord     HealthRecord?     @relation(fields: [healthRecordId], references: [id])
+  healthRecordId   String?
+  id               String            @id @default(cuid())
+  person           Person?           @relation(fields: [personId], references: [id])
+  personId         String?
+  updatedAt        DateTime          @updatedAt
+}
+
+model EducationRecord {
+  birthDetail   BirthDetails? @relation(fields: [birthDetailId], references: [id])
+  birthDetailId String?
+  createdAt     DateTime      @default(now())
+  id            String        @id @default(cuid())
+  person        Person?       @relation(fields: [personId], references: [id])
+  personId      String?
+  updatedAt     DateTime      @updatedAt
+}
+
+model Child {
+  createdAt     DateTime       @default(now())
+  familyMembers FamilyMember[]
+  id            String         @id @default(cuid())
+  parentSpouse  String?
+  person        Person?        @relation(fields: [personId], references: [id])
+  personId      String?
+  spouse        Spouse?        @relation(fields: [spouseId], references: [id])
+  spouseId      String?
+  updatedAt     DateTime       @updatedAt
+}
+
+model BankDetail {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  person    Person?  @relation(fields: [personId], references: [id])
+  personId  String?
+  updatedAt DateTime @updatedAt
+}
+
+model Spouse {
+  children             Child[]
+  createdAt            DateTime              @default(now())
+  id                   String                @id @default(cuid())
+  marriageCertificates MarriageCertificate[]
+  person               Person?               @relation(fields: [personId], references: [id])
+  personId             String?
+  updatedAt            DateTime              @updatedAt
+}
+
+model PassportDetail {
+  createdAt     DateTime       @default(now())
+  id            String         @id @default(cuid())
+  person        Person?        @relation(fields: [personId], references: [id])
+  personId      String?
+  travelDetails TravelDetail[]
+  updatedAt     DateTime       @updatedAt
+}
+
+model TravelDetail {
+  createdAt        DateTime        @default(now())
+  id               String          @id @default(cuid())
+  passportDetail   PassportDetail? @relation(fields: [passportDetailId], references: [id])
+  passportDetailId String?
+  person           Person?         @relation(fields: [personId], references: [id])
+  personId         String?
+  updatedAt        DateTime        @updatedAt
+}
+
+model MarriageCertificate {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  person    Person?  @relation(fields: [personId], references: [id])
+  personId  String?
+  spouse    Spouse?  @relation(fields: [spouseId], references: [id])
+  spouseId  String?
+  updatedAt DateTime @updatedAt
+}
+
+model Otp {
+  code       String?
+  createdAt  DateTime  @default(now())
+  expiration DateTime?
+  id         String    @id @default(cuid())
+  person     Person?   @relation(fields: [personId], references: [id])
+  personId   String?
+  updatedAt  DateTime  @updatedAt
+}
+
+model FamilyMember {
+  child           Child?   @relation(fields: [childId], references: [id])
+  childId         String?
+  createdAt       DateTime @default(now())
+  generationLevel Int?
+  id              String   @id @default(cuid())
+  parentId        String?
+  person          Person?  @relation(fields: [personId], references: [id])
+  personId        String?
+  updatedAt       DateTime @updatedAt
+}
+
+model Role {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String?
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Address {
+  city      String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  state     String?
+  street    String?
+  updatedAt DateTime @updatedAt
+  zipCode   String?
+}
+
+model AuthenticationRecord {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  status    String?
+  timestamp DateTime?
+  updatedAt DateTime  @updatedAt
+}
+
+model Ssn {
+  createdAt      DateTime  @default(now())
+  expirationDate DateTime?
+  id             String    @id @default(cuid())
+  issuedDate     DateTime?
+  numberField    String?
+  updatedAt      DateTime  @updatedAt
+}
+
+model Guest {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model Admin {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
